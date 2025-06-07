@@ -1,24 +1,30 @@
 package com.muhammadali.luminateinterview.screens.contacts
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.muhammadali.luminateinterview.screens.common.ListScreenScaffold
+import com.muhammadali.luminateinterview.screens.common.TagState
 
 @Composable
 fun ContactsScreen(modifier: Modifier = Modifier) {
     ContactsScreenContent()
 }
 
+private val tags = listOf(
+    TagState("Favorites", true),
+    TagState("All", false),
+    TagState("Blocked", false)
+)
+
 @Composable
 fun ContactsScreenContent() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(
-            modifier = Modifier.align(Alignment.Center),
-            text = "Contacts Screen"
-        )
+    ListScreenScaffold(
+        modifier = Modifier,
+        title = "Contacts",
+        tags = tags,
+        onTagClick = {  }
+    ) {
+
     }
 }
 
