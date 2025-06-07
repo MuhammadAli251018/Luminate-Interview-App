@@ -8,17 +8,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.muhammadali.luminateinterview.navigation.AppNavScreen
 import com.muhammadali.luminateinterview.navigation.BottomBarNavHost
 import com.muhammadali.luminateinterview.navigation.BottomBarNavScreen
 import com.muhammadali.luminateinterview.navigation.MainScreenBottomBar
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(
+    appNavController: NavHostController,
+) {
     val bottomBarNavController = rememberNavController()
+
     MainScreenContent(
-        modifier = modifier,
+        modifier = Modifier,
         navController = bottomBarNavController,
-        screens = BottomBarNavScreen.screens
+        screens = BottomBarNavScreen.screens,
+        onNavigateToDetails = {
+            appNavController.navigate(AppNavScreen.ContactDetail)
+        }
     )
 }
 
@@ -26,7 +33,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
 fun MainScreenContent(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    screens: List<BottomBarNavScreen>
+    screens: List<BottomBarNavScreen>,
+    onNavigateToDetails: () -> Unit
 ) {
     Scaffold(
         modifier = modifier.systemBarsPadding(),
@@ -38,7 +46,8 @@ fun MainScreenContent(
     ) {
         BottomBarNavHost(
             modifier = Modifier.padding(it),
-            navController = navController
+            navController = navController,
+            onNavigateToDetails = onNavigateToDetails
         )
     }
 }
@@ -47,5 +56,5 @@ fun MainScreenContent(
 @Preview
 @Composable
 fun MainScreenPreview() {
-    MainScreen()
+    MainScreen(rememberNavController())
 }

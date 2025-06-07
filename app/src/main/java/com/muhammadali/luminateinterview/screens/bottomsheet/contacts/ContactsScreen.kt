@@ -1,11 +1,9 @@
 package com.muhammadali.luminateinterview.screens.bottomsheet.contacts
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -19,8 +17,10 @@ import com.muhammadali.luminateinterview.screens.bottomsheet.contacts.components
 import com.muhammadali.luminateinterview.screens.bottomsheet.contacts.components.ContactItem
 
 @Composable
-fun ContactsScreen(modifier: Modifier = Modifier) {
-    ContactsScreenContent()
+fun ContactsScreen(onNavigateToDetails: () -> Unit = {}) {
+    ContactsScreenContent(
+        onNavigateToDetails = onNavigateToDetails
+    )
 }
 
 val contacts = listOf(
@@ -65,7 +65,9 @@ sealed class ContactsTags(override val tag: String) : Tag {
 }
 
 @Composable
-fun ContactsScreenContent() {
+fun ContactsScreenContent(
+    onNavigateToDetails: () -> Unit = {}
+) {
     var selectedTagIndex by remember { mutableIntStateOf(0) }
 
     ListScreenScaffold(
@@ -79,7 +81,9 @@ fun ContactsScreenContent() {
             modifier = Modifier.fillMaxWidth()
         ) {
             items(contacts) { contact ->
-                ContactItem(contact)
+                ContactItem(contact) {
+                    onNavigateToDetails()
+                }
             }
         }
     }

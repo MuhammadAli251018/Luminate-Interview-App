@@ -1,6 +1,7 @@
 package com.muhammadali.luminateinterview.screens.bottomsheet.contacts.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,11 +36,15 @@ data class Contact(
 
 
 @Composable
-fun ContactItem(contact: Contact) {
+fun ContactItem(
+    contact: Contact,
+    onContactClick: () -> Unit = {},
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 16.dp),
+            .padding(vertical = 8.dp, horizontal = 16.dp)
+            .clickable(onClick = onContactClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(

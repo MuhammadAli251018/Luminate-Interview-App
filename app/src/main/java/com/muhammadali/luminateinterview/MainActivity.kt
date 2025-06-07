@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.muhammadali.luminateinterview.navigation.AppNavHost
+import com.muhammadali.luminateinterview.navigation.AppNavScreen
 import com.muhammadali.luminateinterview.ui.theme.LuminateInterviewTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +22,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LuminateInterviewTheme {
-                MainScreen()
+                val appNavController = rememberNavController()
+                AppNavHost(appNavController)
             }
         }
     }

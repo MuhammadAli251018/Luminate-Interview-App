@@ -38,7 +38,8 @@ fun BottomBarNavScreen.getScreenNameAndIcon() = when(this) {
 @Composable
 fun BottomBarNavHost(
     modifier: Modifier = Modifier,
-    navController: NavHostController
+    navController: NavHostController,
+    onNavigateToDetails: () -> Unit
 ) {
 
     NavHost(navController = navController, startDestination = BottomBarNavScreen.Keypad) {
@@ -47,11 +48,11 @@ fun BottomBarNavHost(
         }
 
         composable<BottomBarNavScreen.RecentCalls> {
-            RecentCallsScreen(modifier = modifier)
+            RecentCallsScreen()
         }
 
         composable<BottomBarNavScreen.Contacts> {
-            ContactsScreen(modifier = modifier)
+            ContactsScreen(onNavigateToDetails)
         }
     }
 }
