@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -31,13 +30,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muhammadali.luminateinterview.R
+import com.muhammadali.luminateinterview.screens.recent.CallStatus
 import com.muhammadali.luminateinterview.ui.theme.LuminateInterviewTheme
 
-private val tags = listOf(
-    TagState("All", true),
+/*private val tags = listOf(
+    TagState("All"),
     TagState("Favourite", false),
     TagState("Blocked", false),
-)
+)*/
 
 @Composable
 fun SearchBar() {
@@ -72,7 +72,8 @@ fun SearchBar() {
 fun ListScreenScaffold(
     modifier: Modifier = Modifier,
     title: String,
-    tags: List<TagState>,
+    tags: List<Tag>,
+    selectedTagIndex: Int,
     onTagClick: (Int) -> Unit,
     content: @Composable () -> Unit
 ) {
@@ -104,12 +105,12 @@ fun ListScreenScaffold(
         }
 
         SearchBar()
-
         LazyRow {
             itemsIndexed(tags) { index, tag ->
                 Tag(
                     modifier = Modifier.padding(horizontal = 5.dp),
                     tag = tag,
+                    isSelected = index == selectedTagIndex,
                     onTagClick = { onTagClick(index) }
                 )
             }
@@ -125,11 +126,12 @@ fun ListScreenScaffoldPreview() {
     LuminateInterviewTheme {
         ListScreenScaffold(
             title = "Test Screen",
-            tags = tags,
+            tags = CallStatus.entries,
             onTagClick = {},
             content = {
                 Text("Screen Content")
-            }
+            },
+            selectedTagIndex = 0
         )
     }
 }

@@ -15,10 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muhammadali.luminateinterview.R
+import com.muhammadali.luminateinterview.screens.recent.CallStatus
+import kotlin.time.Duration.Companion.minutes
 
 data class Call(
     val name: String,
-    val status: String,
+    val isFavourite: Boolean = false,
+    val status: CallStatus,
     val time: String,
     val imageRes: Int
 )
@@ -37,21 +40,21 @@ fun CallItem(call: Call) {
         ){
             Image(
                 painter = painterResource(id = call.imageRes),
-                contentDescription = "Contact Image",
+                contentDescription = null,
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
             )
 
-            Icon(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground), // Star icon
-                contentDescription = "Favorite",
-                modifier = Modifier
-                    .size(25.dp)
-                    .align(Alignment.TopEnd),
-                tint = Color(0xFFFFD700)
-            )
-
+            if (call.isFavourite)
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_launcher_foreground), // Star icon
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(25.dp)
+                        .align(Alignment.TopEnd),
+                    tint = Color(0xFFFFD700)
+                )
         }
 
         Spacer(modifier = Modifier.width(12.dp))
@@ -63,17 +66,13 @@ fun CallItem(call: Call) {
                     fontSize = 16.sp,
                     color = Color.Black
                 )
-                if (call.name == "Alex" || call.name == "Dad") {
-
-                }
             }
             Text(
-                text = "${call.status} • ${call.time}",
+                text = call.status.tag + if(call.status is CallStatus.Answered) " • ${call.status.duration.inWholeMinutes} min" else "",
                 fontSize = 12.sp,
                 color = Color.Gray
             )
         }
-
 
         Text(
             text = call.time,
@@ -88,11 +87,35 @@ fun CallItem(call: Call) {
 fun CallList() {
     val calls = listOf(
         Call(
-            "Alex", "Answered • 4 min", "14:45", imageRes = R.drawable.ic_launcher_background),
+            name = "Alex",
+            status = CallStatus.Answered(4.minutes),
+            time = "14:45",
+            imageRes = R.drawable.ic_launcher_background
+        ),
         Call(
-            "Alex", "Missed", "14:44", imageRes = R.drawable.ic_launcher_background),
-        Call("John", "Answered • 15 min", "13:32", imageRes = R.drawable.ic_launcher_background),
-        Call("Dad", "Answered • 25 min", "13:10", imageRes = R.drawable.ic_launcher_background)
+            name = "Alex",
+            status = CallStatus.Missed,
+            time = "14:44",
+            imageRes = R.drawable.ic_launcher_background
+        ),
+        Call(
+            name = "John",
+            status = CallStatus.Answered(15.minutes),
+            time = "13:32",
+            imageRes = R.drawable.ic_launcher_background
+        ),
+        Call(
+            name = "Dad",
+            status = CallStatus.Answered(25.minutes),
+            time = "13:10",
+            imageRes = R.drawable.ic_launcher_background
+        ),
+        Call(
+            name = "Unknown",
+            status = CallStatus.Incoming,
+            time = "12:05",
+            imageRes = R.drawable.ic_launcher_background // Replace with a default image for unknown
+        )
     )
 
     Column {

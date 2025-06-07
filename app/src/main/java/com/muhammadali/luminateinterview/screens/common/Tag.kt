@@ -19,21 +19,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-data class TagState(
-    val tag: String,
-    val isSelected: Boolean
-)
+interface Tag {
+    val tag: String
+}
 
 @Composable
 fun Tag(
     modifier: Modifier,
-    tag: TagState,
+    tag: Tag,
+    isSelected: Boolean,
     onTagClick: () -> Unit
 ) {
     Tag(
         modifier = modifier,
         tag = tag.tag,
-        isSelected = tag.isSelected,
+        isSelected = isSelected,
         onTagClick = onTagClick
     )
 }
