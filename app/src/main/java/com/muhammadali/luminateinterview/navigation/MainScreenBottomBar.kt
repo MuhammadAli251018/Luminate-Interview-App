@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -33,9 +34,11 @@ fun MainScreenBottomBar(
             ) {
                 val (name, icon) = screen.getScreenNameAndIcon()
                 IconButton(
+                    modifier = Modifier.size(30.dp),
                     onClick = { onClick(screens[index]) }
                 ) {
                     Icon(
+                        modifier = Modifier.size(28.dp),
                         painter = painterResource(icon),
                         contentDescription = null
                     )

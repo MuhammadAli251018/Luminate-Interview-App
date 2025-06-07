@@ -65,8 +65,8 @@ fun CallButton(
             Color(0xFF5EA569),
             Color(0xFF0D3619)
         ),
-        start = Offset(0f, 0f),
-        end = Offset(1000f, 1000f)
+        start = Offset.Zero,
+        end = Offset.Infinite
     )
 
     val borderGradient = Brush.linearGradient(
@@ -94,6 +94,7 @@ fun CallButton(
         verticalArrangement = Arrangement.Center
     ) {
         Icon(
+            modifier = Modifier.size(24.dp),
             painter = icon,
             contentDescription = null,
             tint = Color.White
@@ -121,12 +122,12 @@ fun KeypadComponent(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         buttons.dialPadButtons.forEach { row ->
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(30.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 row.forEach { button ->
@@ -143,8 +144,7 @@ fun KeypadComponent(
             verticalAlignment = Alignment.CenterVertically
         ) {
             CallButton(
-                modifier = Modifier,
-                icon = painterResource(R.drawable.ic_launcher_foreground),
+                icon = painterResource(R.drawable.ic_call_number),
                 onClick = onCallClick
             )
         }

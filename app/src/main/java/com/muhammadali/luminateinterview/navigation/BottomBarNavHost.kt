@@ -29,9 +29,9 @@ sealed class BottomBarNavScreen {
 }
 
 fun BottomBarNavScreen.getScreenNameAndIcon() = when(this) {
-    BottomBarNavScreen.Contacts -> Pair("Contacts", R.drawable.ic_launcher_foreground)
-    BottomBarNavScreen.Keypad -> Pair("Keypad", R.drawable.ic_launcher_foreground)
-    BottomBarNavScreen.RecentCalls -> Pair("Resents", R.drawable.ic_launcher_foreground)
+    BottomBarNavScreen.Contacts -> Pair("Contacts", R.drawable.ic_contacts)
+    BottomBarNavScreen.Keypad -> Pair("Keypad", R.drawable.ic_keypad)
+    BottomBarNavScreen.RecentCalls -> Pair("Resents", R.drawable.ic_recent_calls)
 }
 
 

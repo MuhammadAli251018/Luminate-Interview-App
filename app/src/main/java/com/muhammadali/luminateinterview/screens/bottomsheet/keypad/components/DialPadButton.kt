@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -59,43 +60,35 @@ fun DialPadButton(
         end = Offset(1000f, 1000f)
     )
 
-    val borderGradient = Brush.linearGradient(
-        colors = listOf(
-            Color(0xFFFAFAFA),
-            Color(0xFF666666)
-        ),
-        start = Offset(0f, 0f),
-        end = Offset(1000f, 1000f)
-    )
-
     Column (
         modifier = modifier
             .size(80.dp)
             .clip(CircleShape)
             .background(brush = bgGradient, shape = CircleShape)
             .clickable(onClick = onClick)
-            .border(width = 1.dp, brush = borderGradient, shape = CircleShape)
+            .border(width = 1.dp, color = Color(0xFFF9FAFB), shape = CircleShape)
             .shadow(
-                elevation = 95.dp,
+                elevation = 24.dp,
                 shape = CircleShape,
-                true, /*spotColor = DefaultShadowColor*/
+                ambientColor = Color.Black.copy(alpha = 0.25f),
+                spotColor = Color.Black.copy(alpha = 0.25f)
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
     ) {
+
+        Spacer(Modifier.height(if (ituString.isNotEmpty()) 15.dp else 25.dp))
+
         Text(
             text = number,
             color = Color.Black,
-            fontSize = 24.sp
+            fontSize = 22.sp,
         )
 
         if (ituString.isNotEmpty()) {
-            Spacer(modifier = Modifier.height(5.dp))
-
             Text(
                 text = ituString,
                 color = Color(0xFF555555),
-                fontSize = 14.sp
+                fontSize = 12.sp
             )
         }
     }
