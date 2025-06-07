@@ -1,23 +1,67 @@
 package com.muhammadali.luminateinterview.screens.contacts
 
+import android.util.Log
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.muhammadali.luminateinterview.R
 import com.muhammadali.luminateinterview.screens.common.ListScreenScaffold
 import com.muhammadali.luminateinterview.screens.common.Tag
+import com.muhammadali.luminateinterview.screens.contacts.components.Contact
+import com.muhammadali.luminateinterview.screens.contacts.components.ContactItem
 
 @Composable
 fun ContactsScreen(modifier: Modifier = Modifier) {
     ContactsScreenContent()
 }
 
-enum class ContactsTags(override val tag: String) : Tag {
-    ALL(tag = "All"),
-    FAVOURITE(tag = "Favourite"),
-    BLOCKED(tag = "Blocked")
+val contacts = listOf(
+    Contact(
+        name = "Daniel",
+        isFavourite = true,
+        status = ContactsTags.Favourite,
+        number = "+1 (170) 305-9410",
+        imageRes = R.drawable.ic_launcher_background
+    ),
+    Contact(
+        name = "Mom",
+        isFavourite = true,
+        status = ContactsTags.Favourite,
+        number = "+1 (522) 255-3813",
+        imageRes = R.drawable.ic_launcher_background
+    ),
+    Contact(
+        name = "Dad",
+        isFavourite = true,
+        status = ContactsTags.Favourite,
+        number = "+1 (510) 852-4947",
+        imageRes = R.drawable.ic_launcher_background
+    ),
+    Contact(
+        name = "Alex",
+        isFavourite = true,
+        status = ContactsTags.Favourite,
+        number = "+1 (767) 175-5999",
+        imageRes = R.drawable.ic_launcher_background
+    )
+)
+
+sealed class ContactsTags(override val tag: String) : Tag {
+    data object All : ContactsTags(tag = "All")
+    data object Favourite : ContactsTags(tag = "Favourite")
+    data object Blocked : ContactsTags(tag = "Blocked")
+
+    companion object {
+        val entries: List<ContactsTags> by lazy { listOf(All, Favourite, Blocked) }
+    }
 }
 
 @Composable
@@ -31,10 +75,17 @@ fun ContactsScreenContent() {
         onTagClick = { selectedTagIndex = it },
         selectedTagIndex = selectedTagIndex
     ) {
-
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            items(contacts) { contact ->
+                ContactItem(contact)
+            }
+        }
     }
 }
 
+@Preview(showBackground = true)
 @Composable
 fun ContactsScreenPreview() {
     ContactsScreen()

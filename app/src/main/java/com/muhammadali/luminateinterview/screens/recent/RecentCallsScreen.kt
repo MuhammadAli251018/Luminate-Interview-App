@@ -31,7 +31,7 @@ sealed class CallStatus(override val tag: String) : Tag {
     data class Answered(val duration: Duration) : CallStatus(tag = "Answered")
 
     companion object {
-        val entries = listOf(Incoming, Missed, Outgoing, Blocked)
+        val entries by lazy { listOf(Incoming, Missed, Outgoing, Blocked, Answered(Duration.INFINITE)) }
     }
 }
 
