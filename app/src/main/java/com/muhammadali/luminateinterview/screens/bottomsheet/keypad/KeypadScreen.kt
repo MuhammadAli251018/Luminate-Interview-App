@@ -1,4 +1,4 @@
-package com.muhammadali.luminateinterview.screens.keypad
+package com.muhammadali.luminateinterview.screens.bottomsheet.keypad
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muhammadali.luminateinterview.R
-import com.muhammadali.luminateinterview.screens.keypad.components.Keypad
+import com.muhammadali.luminateinterview.screens.bottomsheet.keypad.components.Keypad
 
 @Composable
 fun KeypadScreen(modifier: Modifier = Modifier) {

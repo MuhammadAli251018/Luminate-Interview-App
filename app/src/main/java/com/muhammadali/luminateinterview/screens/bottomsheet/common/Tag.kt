@@ -1,4 +1,4 @@
-package com.muhammadali.luminateinterview.screens.common
+package com.muhammadali.luminateinterview.screens.bottomsheet.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

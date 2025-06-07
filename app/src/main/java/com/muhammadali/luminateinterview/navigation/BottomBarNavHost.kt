@@ -6,9 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.muhammadali.luminateinterview.R
-import com.muhammadali.luminateinterview.screens.contacts.ContactsScreen
-import com.muhammadali.luminateinterview.screens.keypad.KeypadScreen
-import com.muhammadali.luminateinterview.screens.recent.RecentCallsScreen
+import com.muhammadali.luminateinterview.screens.bottomsheet.contacts.ContactsScreen
+import com.muhammadali.luminateinterview.screens.bottomsheet.keypad.KeypadScreen
+import com.muhammadali.luminateinterview.screens.bottomsheet.recent.RecentCallsScreen
 import kotlinx.serialization.Serializable
 
 @Serializable

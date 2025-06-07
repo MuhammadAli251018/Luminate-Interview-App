@@ -1,4 +1,4 @@
-package com.muhammadali.luminateinterview.screens.recent.components
+package com.muhammadali.luminateinterview.screens.bottomsheet.recent.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muhammadali.luminateinterview.R
-import com.muhammadali.luminateinterview.screens.recent.CallStatus
+import com.muhammadali.luminateinterview.screens.bottomsheet.recent.CallStatus
 import kotlin.time.Duration.Companion.minutes
 
 data class Call(

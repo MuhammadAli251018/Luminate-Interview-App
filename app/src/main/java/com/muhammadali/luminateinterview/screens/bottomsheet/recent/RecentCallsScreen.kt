@@ -1,4 +1,4 @@
-package com.muhammadali.luminateinterview.screens.recent
+package com.muhammadali.luminateinterview.screens.bottomsheet.recent
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,10 +11,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.muhammadali.luminateinterview.R
-import com.muhammadali.luminateinterview.screens.common.ListScreenScaffold
-import com.muhammadali.luminateinterview.screens.common.Tag
-import com.muhammadali.luminateinterview.screens.recent.components.Call
-import com.muhammadali.luminateinterview.screens.recent.components.CallItem
+import com.muhammadali.luminateinterview.screens.bottomsheet.common.ListScreenScaffold
+import com.muhammadali.luminateinterview.screens.bottomsheet.common.Tag
+import com.muhammadali.luminateinterview.screens.bottomsheet.recent.components.Call
+import com.muhammadali.luminateinterview.screens.bottomsheet.recent.components.CallItem
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 
@@ -87,7 +87,12 @@ fun RecentCallsScreenContent(
     ListScreenScaffold(
         modifier = Modifier,
         title = "Recent",
-        tags = listOf(CallStatus.Incoming, CallStatus.Missed, CallStatus.Outgoing, CallStatus.Blocked),
+        tags = listOf(
+            CallStatus.Incoming,
+            CallStatus.Missed,
+            CallStatus.Outgoing,
+            CallStatus.Blocked
+        ),
         onTagClick = { selectedTagIndex = it },
         selectedTagIndex = selectedTagIndex
     ) {

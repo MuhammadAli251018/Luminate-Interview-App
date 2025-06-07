@@ -1,4 +1,4 @@
-package com.muhammadali.luminateinterview.screens.common
+package com.muhammadali.luminateinterview.screens.bottomsheet.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,7 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muhammadali.luminateinterview.R
-import com.muhammadali.luminateinterview.screens.recent.CallStatus
+import com.muhammadali.luminateinterview.screens.bottomsheet.recent.CallStatus
 import com.muhammadali.luminateinterview.ui.theme.LuminateInterviewTheme
 
 /*private val tags = listOf(
