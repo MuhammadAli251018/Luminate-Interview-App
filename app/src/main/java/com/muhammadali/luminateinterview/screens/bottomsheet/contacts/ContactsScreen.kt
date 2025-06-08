@@ -29,28 +29,28 @@ val contacts = listOf(
         isFavourite = true,
         status = ContactsTags.Favourite,
         number = "+1 (170) 305-9410",
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_prototype
     ),
     Contact(
         name = "Mom",
         isFavourite = true,
         status = ContactsTags.Favourite,
         number = "+1 (522) 255-3813",
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_prototype
     ),
     Contact(
         name = "Dad",
         isFavourite = true,
         status = ContactsTags.Favourite,
         number = "+1 (510) 852-4947",
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_prototype
     ),
     Contact(
         name = "Alex",
         isFavourite = true,
         status = ContactsTags.Favourite,
         number = "+1 (767) 175-5999",
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_alex
     )
 )
 
