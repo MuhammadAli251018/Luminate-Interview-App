@@ -41,40 +41,40 @@ private val calls = listOf(
         status = CallStatus.Answered(duration = 2.minutes),
         time = "14:45",
         isFavourite = true,
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_alex
     ),
     Call(
         name = "Alex",
         status = CallStatus.Missed,
         time = "14:44",
         isFavourite = true,
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_alex
     ),
     Call(
         name = "John",
         status = CallStatus.Missed,
         time = "13:32",
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_john
     ),
     Call(
         name = "Dad",
         status = CallStatus.Missed,
         time = "11:58",
         isFavourite = true,
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_prototype
     ),
     Call(
         name = "+1 (776) 853-6598",
         status = CallStatus.Answered(duration = 5.minutes),
         time = "Yesterday",
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_prototype
     ),
     Call(
         name = "Mom",
         status = CallStatus.Missed,
         time = "Yesterday",
         isFavourite = true,
-        imageRes = R.drawable.ic_launcher_background
+        imageRes = R.drawable.img_prototype
     )
 )
 

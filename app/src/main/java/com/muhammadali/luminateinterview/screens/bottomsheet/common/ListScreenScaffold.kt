@@ -1,5 +1,6 @@
 package com.muhammadali.luminateinterview.screens.bottomsheet.common
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,11 +35,6 @@ import com.muhammadali.luminateinterview.R
 import com.muhammadali.luminateinterview.screens.bottomsheet.recent.CallStatus
 import com.muhammadali.luminateinterview.ui.theme.LuminateInterviewTheme
 
-/*private val tags = listOf(
-    TagState("All"),
-    TagState("Favourite", false),
-    TagState("Blocked", false),
-)*/
 
 @Composable
 fun SearchBar() {
@@ -50,21 +47,22 @@ fun SearchBar() {
         placeholder = { Text("Search for contacts") },
         leadingIcon = {
             Icon(
-                modifier = Modifier.size(40.dp),
-                painter = painterResource(R.drawable.ic_launcher_foreground),
+                modifier = Modifier.size(28.dp),
+                painter = painterResource(R.drawable.ic_search),
                 contentDescription = "Search Icon"
             )
         },
         colors = TextFieldDefaults.colors(
 
-            unfocusedContainerColor = Color.LightGray.copy(alpha = 0.3f),
-            focusedContainerColor = Color.LightGray.copy(alpha = 0.3f),
+            unfocusedContainerColor = Color(0xFFF1F1F1),
+            focusedContainerColor = Color(0xFFF1F1F1),
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .height(50.dp)
+            .border(width = 0.5f.dp, color = Color(0xFFFAFAFA), shape = RoundedCornerShape(20.dp))
     )
 }
 
@@ -80,17 +78,18 @@ fun ListScreenScaffold(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 25.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(30.dp))
 
         Box(modifier = Modifier.fillMaxWidth()) {
             Text(
                 modifier = Modifier.align(Alignment.CenterStart),
                 text = title,
-                fontSize = 30.sp
+                fontSize = 36.sp,
+                fontWeight = FontWeight.Bold
             )
 
             IconButton (
@@ -98,13 +97,15 @@ fun ListScreenScaffold(
                 onClick = {}
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    modifier = Modifier.size(28.dp),
+                    painter = painterResource(R.drawable.ic_three_dots),
                     contentDescription = null
                 )
             }
         }
 
         SearchBar()
+
         LazyRow {
             itemsIndexed(tags) { index, tag ->
                 Tag(
@@ -125,7 +126,7 @@ fun ListScreenScaffold(
 fun ListScreenScaffoldPreview() {
     LuminateInterviewTheme {
         ListScreenScaffold(
-            title = "Test Screen",
+            title = "Recent",
             tags = CallStatus.entries,
             onTagClick = {},
             content = {

@@ -61,7 +61,7 @@ fun Tag(
                 color = Color(if (isSelected) 0xFF555555 else 0xFFF4F4F4),
                 shape = RoundedCornerShape(25.dp)
             )
-            .border(width = 0.5f.dp, brush = borderGradient, shape = RoundedCornerShape(25.dp))
+//            .border(width = 0.5f.dp, brush = borderGradient, shape = RoundedCornerShape(25.dp))
             .clip(RoundedCornerShape(25.dp))
             .clickable(onClick = onTagClick)
             .padding(horizontal = 8.dp, vertical = 4.dp),
