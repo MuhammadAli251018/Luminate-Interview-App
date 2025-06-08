@@ -29,10 +29,10 @@ enum class ContactActions {
 
     val resource: Int
         get() = when (this) {
-            VOICE_CALL -> R.drawable.ic_launcher_foreground
-            VIDEO_CALL -> R.drawable.ic_launcher_foreground
-            CHAT -> R.drawable.ic_launcher_foreground
-            CHANGE_NOTIFICATION -> R.drawable.ic_launcher_foreground
+            VOICE_CALL -> R.drawable.ic_voice_call
+            VIDEO_CALL -> R.drawable.ic_video_call
+            CHAT -> R.drawable.ic_chat
+            CHANGE_NOTIFICATION -> R.drawable.ic_mute_notification
         }
 }
 
@@ -47,10 +47,10 @@ sealed class ContactInfo {
     val resource: Int
         get() = when (this) {
             is Name -> R.drawable.ic_launcher_foreground
-            is Number -> R.drawable.ic_launcher_foreground
-            is Email -> R.drawable.ic_launcher_foreground
-            is Birthday -> R.drawable.ic_launcher_foreground
-            is Address -> R.drawable.ic_launcher_foreground
+            is Number -> R.drawable.ic_voice_call
+            is Email -> R.drawable.ic_email
+            is Birthday -> R.drawable.ic_birthday
+            is Address -> R.drawable.ic_location
         }
 }
 
@@ -63,7 +63,7 @@ data class ContactData(
 ) {
     fun getAsList(): List<ContactInfo> {
         val list = mutableListOf<ContactInfo>()
-        list.add(ContactInfo.Name(number))
+        list.add(ContactInfo.Number(number))
 
         if (email != null)
             list.add(ContactInfo.Email(email))
@@ -83,7 +83,7 @@ fun DetailsScreen(
     email: String = "alex.johnson89@mail.com",
     birthday: String = "March 14, 1995",
     address: String = "13 Elm Street, Springfield, IL 62704, USA",
-    imageRes: Int = R.drawable.ic_launcher_background
+    imageRes: Int = R.drawable.img_alex
 ) {
     Scaffold(
         modifier = Modifier
@@ -121,7 +121,7 @@ fun DetailsScreenContent(
     ) {
         Image(
             modifier = Modifier
-                .size(120.dp)
+                .size(130.dp)
                 .clip(CircleShape),
             painter = painterResource(imageRes),
             contentDescription = null
@@ -135,8 +135,8 @@ fun DetailsScreenContent(
 
         Text(
             text = contactData.number,
-            color = Color.Gray,
-            fontSize = 16.sp,
+            color = Color(0xFF555555),
+            fontSize = 20.sp,
         )
 
         Row(
@@ -146,15 +146,13 @@ fun DetailsScreenContent(
             ContactActions.entries.forEach {
                 Box(
                     modifier = Modifier
-                        .size(60.dp)
-                        .background(Color.Gray, CircleShape)
-                        .clip(shape = CircleShape)
-                        .border(width = 1.dp, color = Color.Gray, shape = CircleShape)
-                    ,
+                        .size(65.dp)
+                        .background(Color(0xFFF4F4F4), CircleShape)
+                        .clip(shape = CircleShape),
                 ) {
                     Icon(
                         modifier = Modifier
-                            .size(40.dp)
+                            .size(23.dp)
                             .align(Alignment.Center),
                         painter = painterResource(it.resource),
                         contentDescription = null

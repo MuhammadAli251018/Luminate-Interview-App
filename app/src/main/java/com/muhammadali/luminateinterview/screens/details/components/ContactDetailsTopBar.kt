@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,15 +53,17 @@ fun ContactDetailsTopBarContent(
         ) {
             IconButton( onBackClick ) {
                 Icon(
-                    modifier = Modifier.fillMaxHeight(),
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
-                    contentDescription = null
+                    modifier = Modifier.size(25.dp),
+                    painter = painterResource(R.drawable.ic_back),
+                    contentDescription = null,
+                    tint = Color(0xFF555555)
                 )
             }
 
             Text(
                 text = name,
-                fontSize = 20.sp
+                fontSize = 20.sp,
+                color = Color.Black
             )
         }
 
@@ -71,17 +74,19 @@ fun ContactDetailsTopBarContent(
         ) {
             IconButton( onShareClick ) {
                 Icon(
-                    modifier = Modifier.fillMaxHeight(),
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
-                    contentDescription = null
+                    modifier = Modifier.size(25.dp),
+                    painter = painterResource(R.drawable.ic_share),
+                    contentDescription = null,
+                    tint = Color(0xFF555555)
                 )
             }
 
             IconButton( onMoreClick ) {
                 Icon(
-                    modifier = Modifier.fillMaxHeight(),
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
-                    contentDescription = null
+                    modifier = Modifier.size(25.dp),
+                    painter = painterResource(R.drawable.ic_three_dots),
+                    contentDescription = null,
+                    tint = Color(0xFF555555)
                 )
             }
         }
