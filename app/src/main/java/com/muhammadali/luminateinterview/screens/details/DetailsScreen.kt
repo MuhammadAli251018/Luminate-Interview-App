@@ -1,14 +1,11 @@
 package com.muhammadali.luminateinterview.screens.details
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -16,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.muhammadali.luminateinterview.R
 import com.muhammadali.luminateinterview.screens.details.components.ContactDetailsTopBar
 import com.muhammadali.luminateinterview.screens.details.components.ContactInfoItem
@@ -24,10 +22,10 @@ import com.muhammadali.luminateinterview.screens.details.components.indexPositio
 enum class ContactActions {
     VOICE_CALL,
     VIDEO_CALL,
-    CHAT,
-    CHANGE_NOTIFICATION;
+	CHAT,
+	CHANGE_NOTIFICATION;
 
-    val resource: Int
+	val resource: Int
         get() = when (this) {
             VOICE_CALL -> R.drawable.ic_voice_call
             VIDEO_CALL -> R.drawable.ic_video_call
@@ -36,15 +34,16 @@ enum class ContactActions {
         }
 }
 
-sealed class ContactInfo {
-    abstract val data: String
-    data class Name(override val data: String) : ContactInfo()
-    data class Number(override val data: String) : ContactInfo()
-    data class Email(override val data: String) : ContactInfo()
-    data class Birthday(override val data: String) : ContactInfo()
-    data class Address(override val data: String) : ContactInfo()
+sealed class ContactInfo(
+    open val data: String
+) {
+    data class Name(override val data: String) : ContactInfo(data)
+    data class Number(override val data: String) : ContactInfo(data)
+    data class Email(override val data: String) : ContactInfo(data)
+    data class Birthday(override val data: String) : ContactInfo(data)
+    data class Address(override val data: String) : ContactInfo(data)
 
-    val resource: Int
+	val resource: Int
         get() = when (this) {
             is Name -> R.drawable.ic_launcher_foreground
             is Number -> R.drawable.ic_voice_call
@@ -61,18 +60,16 @@ data class ContactData(
     val birthday: String?,
     val address: String?
 ) {
-    fun getAsList(): List<ContactInfo> {
-        val list = mutableListOf<ContactInfo>()
-        list.add(ContactInfo.Number(number))
-
-        if (email != null)
-            list.add(ContactInfo.Email(email))
-        if (birthday != null)
-            list.add(ContactInfo.Birthday(birthday))
-        if (address != null)
-            list.add(ContactInfo.Address(address))
-
-        return list
+    fun getAsList(): List<ContactInfo> = buildList {
+        add(ContactInfo.Number(number))
+        email?.let {
+			add(ContactInfo.Email(it))
+		}
+        birthday?.let {
+			add(ContactInfo.Birthday(it))
+		}
+        address?.let {
+			add(ContactInfo.Address(it)) }
     }
 }
 
@@ -166,22 +163,21 @@ fun DetailsScreenContent(
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
         ) {
-            contactData.getAsList().apply {
-                forEachIndexed { index, info ->
-                    ContactInfoItem(
-                        contactInfoPosition = index indexPosition size,
-                        contactInfo = info
-                    )
+            contactData.getAsList().forEachIndexed { index, info ->
+				ContactInfoItem(
+					contactInfoPosition = index indexPosition contactData.getAsList().size,
+					contactInfo = info
+				)
 
-                    if (index != lastIndex)
-                        HorizontalDivider(
-                            Modifier.fillMaxWidth(),
-                            thickness = 1.dp,
-                            color = Color.Gray
-                        )
-                }
+				if (index != contactData.getAsList().lastIndex) {
+					HorizontalDivider(
+						Modifier.fillMaxWidth(),
+						thickness = 1.dp,
+						color = Color.Gray
+                    )
+				}
             }
-        }
+		}
     }
 }
 
